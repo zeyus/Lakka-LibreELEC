@@ -64,12 +64,12 @@
           echo "${DEVICE} ${ARCH} not supported on ${DISTRO}!"
           exit 1
         fi
-        TARGET_CPU_FLAGS="+crc"
+        TARGET_CPU_FLAGS="+crc+simd"
         TARGET_FPU="neon-fp-armv8"
         TARGET_FLOAT="hard"
         TARGET_FEATURES="64bit"
         KERNEL_TARGET="Image"
-        ADDITIONAL_PACKAGES+=" rpi_userland"
+        ADDITIONAL_PACKAGES+=" libepoxy rpi_userland chrome rpi-tools system-tools multimedia-tools gpicase_safeshutdown wiringPi lakka_update libdrm"
         ;;
     esac
 

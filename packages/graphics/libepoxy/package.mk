@@ -24,6 +24,6 @@ if [ "${OPENGLES_SUPPORT}" = "yes" ]; then
   PKG_DEPENDS_TARGET+=" ${OPENGLES}"
 fi
 
-if [ "${DISPLAYSERVER}" != "x11" ]; then
-  PKG_MESON_OPTS_TARGET="-Dglx=no"
-fi
+#if [ "${DISPLAYSERVER}" != "x11" ]; then
+#  PKG_MESON_OPTS_TARGET="-Dglx=no"
+#fi
