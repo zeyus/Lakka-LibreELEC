@@ -27,12 +27,6 @@ case "${LINUX}" in
     PKG_URL="https://github.com/raspberrypi/linux/archive/${PKG_VERSION}.tar.gz"
     PKG_SOURCE_NAME="linux-${LINUX}-${PKG_VERSION}.tar.gz"
     ;;
-  *)
-    PKG_VERSION="5.10.123"
-    PKG_SHA256="654ab0960b70013e7dad6b3782c25d62e13cbb8c053010daef667d5d74061e52"
-    PKG_URL="https://www.kernel.org/pub/linux/kernel/v5.x/${PKG_NAME}-${PKG_VERSION}.tar.xz"
-    PKG_PATCH_DIRS="default ${DISTRO}-default"
-    ;;
   L4T)
     PKG_VERSION=$DEVICE
     PKG_URL="l4t-kernel-sources"
@@ -42,6 +36,12 @@ case "${LINUX}" in
     #Need to find a better way to do this for l4t platforms!
     PKG_SHA256=$L4T_COMBINED_KERNEL_SHA256
     ;;
+  *)
+    PKG_VERSION="5.10.123"
+    PKG_SHA256="654ab0960b70013e7dad6b3782c25d62e13cbb8c053010daef667d5d74061e52"
+    PKG_URL="https://www.kernel.org/pub/linux/kernel/v5.x/${PKG_NAME}-${PKG_VERSION}.tar.xz"
+    PKG_PATCH_DIRS="default ${DISTRO}-default"
+    ;;
 esac
 
 PKG_KERNEL_CFG_FILE=$(kernel_config_path) || die
@@ -50,7 +50,7 @@ if listcontains "${UBOOT_FIRMWARE}" "crust"; then
   PKG_PATCH_DIRS+=" crust"
 fi
 
-PKG_PATCH_DIRS+=" ${DISTRO}-${LINUX}"
+# PKG_PATCH_DIRS+=" ${DISTRO}-${LINUX}"
 
 if [ -n "${KERNEL_TOOLCHAIN}" ]; then
   PKG_DEPENDS_HOST+=" gcc-arm-${KERNEL_TOOLCHAIN}:host"
